@@ -1,0 +1,29 @@
+const express = require("express");
+const app = express();
+const authRoute = require("./router/auth-router");
+const contactRoute = require("./router/contact.router")
+const connectDB = require("./utils/db");
+const errorMiddleware = require("./middlewares/error-middleware");
+const cors = require('cors')
+
+const corsOptions = {
+  origin: "http://localhost:3000",
+  methods:"GET, POST , PUT, DELETE, PATCH, HEAD  ",
+  Credential: true,
+}
+app.use(cors(corsOptions));
+app.use(express.json());
+const PORT = 5000;
+
+app.use("/api/auth", authRoute);
+app.use("/api/form", contactRoute)  
+
+app.use(errorMiddleware);
+
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log(`server run at port http://localhost:${PORT}`);
+  });
+});
+
+
