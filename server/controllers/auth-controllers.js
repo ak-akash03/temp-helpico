@@ -26,6 +26,7 @@ const register = async (req, res) => {
       email,
       phone,
       password: hash_password,
+      
     });
 
     res

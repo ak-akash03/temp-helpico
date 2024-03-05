@@ -21,18 +21,12 @@ const userSchema = new mongoose.Schema(
       type: String,
       require: true,
     },
-    isAdmin: {
-      type: Boolean,
-      default: false, 
-    },
+    
   },
   {}
 );
 
 
-// userSchema.pre('save', async function(){
-//    console.log("pre mothod" , this);
-// })
 
 userSchema.methods.comparePassword = async function(password) {
   return bcrypt.compare(password, this.password)
