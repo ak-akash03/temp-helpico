@@ -16,7 +16,7 @@ const register = async (req, res) => {
     const userExits = await User.findOne({ email });
 
     if (userExits) {
-      return res.status(400).json({ msg: "email already exits : " });
+      return res.status(400).json({ message: "email already exits : " });
     }
 
     const saltRound = 10;
@@ -74,4 +74,23 @@ const login = async (req, res) => {
 
 
 
-module.exports = { home, login, register };
+// ---------------------------------------------------------------------
+
+
+
+const user = async(req, res) => {
+  try {
+    const userData = req.user;
+    console.log(userData);
+
+    res.status(200).json({userData})
+
+    
+  } catch (error) {
+    console.log(`error from thee user root ${error}`);
+  } 
+}
+
+
+module.exports = { home, login, register, user };
+

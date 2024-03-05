@@ -5,6 +5,8 @@ const contactRoute = require("./router/contact.router")
 const connectDB = require("./utils/db");
 const errorMiddleware = require("./middlewares/error-middleware");
 const cors = require('cors')
+const studentRoute = require("./router/student.router")
+const workerRoute = require("./router/Worker.router")
 
 const corsOptions = {
   origin: "http://localhost:3000",
@@ -17,6 +19,8 @@ const PORT = 5000;
 
 app.use("/api/auth", authRoute);
 app.use("/api/form", contactRoute)  
+app.use("/api/data", studentRoute)  
+app.use("/api/data", workerRoute)  
 
 app.use(errorMiddleware);
 
